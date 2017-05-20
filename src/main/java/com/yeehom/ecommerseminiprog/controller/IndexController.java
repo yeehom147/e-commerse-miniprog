@@ -17,6 +17,7 @@ public class IndexController {
 		String test;
 		test = "1";
 		System.out.println(test);
+		Integer i = null;
 		return "hello, there";
 	}
 }
