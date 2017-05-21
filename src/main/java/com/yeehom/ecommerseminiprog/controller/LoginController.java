@@ -5,26 +5,28 @@ package com.yeehom.ecommerseminiprog.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.yeehom.ecommerseminiprog.pojo.UserPojo;
+import com.yeehom.ecommerseminiprog.pojo.User;
 import com.yeehom.ecommerseminiprog.service.ILoginService;
-import com.yeehom.ecommerseminiprog.service.LoginServiceImpl;
+
+import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 /**
  * @author YeeHomFoo
  *
  */
-@RestController
+@RestController()
 public class LoginController {
 	
 	@Autowired
 	ILoginService loginService;
-	
-	@RequestMapping("/usrs")
-	public String queryUserByName()
+
+	@RequestMapping(value = "/user",method=POST)
+	public String queryUserByName(@RequestParam(value = "userName") String userName)
 	{
-		UserPojo user = loginService.queryUserByName("test");
+		User user = loginService.queryUserByName(userName);
 		return user == null? "null" : user.toString();
 	}
 }

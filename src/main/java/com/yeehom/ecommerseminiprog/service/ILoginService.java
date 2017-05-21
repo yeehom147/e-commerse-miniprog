@@ -1,11 +1,9 @@
 package com.yeehom.ecommerseminiprog.service;
 
-import org.springframework.stereotype.Component;
-
-import com.yeehom.ecommerseminiprog.pojo.UserPojo;
+import com.yeehom.ecommerseminiprog.pojo.User;
 
 
 public interface ILoginService {
 
-	public UserPojo queryUserByName(String userName);
+	public User queryUserByName(String userName);
 }
