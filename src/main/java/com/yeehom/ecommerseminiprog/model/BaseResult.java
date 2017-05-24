@@ -1,9 +1,5 @@
 package com.yeehom.ecommerseminiprog.model;
 
-
-import com.sdicons.json.mapper.JSONMapper;
-import com.sdicons.json.mapper.MapperException;
-
 /**
  * Created by kognxq on 2017/5/21.
  */

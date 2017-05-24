@@ -14,10 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class IndexController {
 	@RequestMapping("/")
 	public String index() {
-		String test;
-		test = "1";
-		System.out.println(test);
-		Integer i = null;
-		return "hello, there";
+		return "hello world";
 	}
 }
