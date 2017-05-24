@@ -3,6 +3,7 @@
  */
 package com.yeehom.ecommerseminiprog.controller;
 
+import com.yeehom.ecommerseminiprog.util.JsonUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,6 +28,7 @@ public class LoginController {
 	public String queryUserByName(@RequestParam(value = "userName") String userName)
 	{
 		User user = loginService.queryUserByName(userName);
-		return user == null? "null" : user.toString();
+
+		return JsonUtil.Serialize(user);
 	}
 }
