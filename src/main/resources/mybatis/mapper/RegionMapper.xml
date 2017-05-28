@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yeehom.ecommerseminiprog.dao.RegionMapper">
+  <resultMap id="BaseResultMap" type="com.yeehom.ecommerseminiprog.pojo.Region">
+    <result column="PkId" jdbcType="INTEGER" property="pkid" />
+    <result column="RegionName" jdbcType="VARCHAR" property="regionname" />
+    <result column="Level" jdbcType="INTEGER" property="level" />
+    <result column="ParentId" jdbcType="INTEGER" property="parentid" />
+    <result column="CityCode" jdbcType="VARCHAR" property="citycode" />
+    <result column="ADCode" jdbcType="VARCHAR" property="adcode" />
+    <result column="CenterLng" jdbcType="DOUBLE" property="centerlng" />
+    <result column="CenterLat" jdbcType="DOUBLE" property="centerlat" />
+    <result column="ProvinceId" jdbcType="INTEGER" property="provinceid" />
+    <result column="ProvinceName" jdbcType="VARCHAR" property="provincename" />
+    <result column="CityId" jdbcType="INTEGER" property="cityid" />
+    <result column="CityName" jdbcType="VARCHAR" property="cityname" />
+    <result column="DistrictId" jdbcType="INTEGER" property="districtid" />
+    <result column="DistrictName" jdbcType="VARCHAR" property="districtname" />
+    <result column="IsActive" jdbcType="BIT" property="isactive" />
+    <result column="CreateBy" jdbcType="VARCHAR" property="createby" />
+    <result column="CreateTime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="ModifyBy" jdbcType="VARCHAR" property="modifyby" />
+    <result column="ModifyTime" jdbcType="TIMESTAMP" property="modifytime" />
+  </resultMap>
+  <insert id="insert" parameterType="com.yeehom.ecommerseminiprog.pojo.Region">
+    insert into t_region (PkId, RegionName, Level, 
+      ParentId, CityCode, ADCode, 
+      CenterLng, CenterLat, ProvinceId, 
+      ProvinceName, CityId, CityName, 
+      DistrictId, DistrictName, IsActive, 
+      CreateBy, CreateTime, ModifyBy, 
+      ModifyTime)
+    values (#{pkid,jdbcType=INTEGER}, #{regionname,jdbcType=VARCHAR}, #{level,jdbcType=INTEGER}, 
+      #{parentid,jdbcType=INTEGER}, #{citycode,jdbcType=VARCHAR}, #{adcode,jdbcType=VARCHAR}, 
+      #{centerlng,jdbcType=DOUBLE}, #{centerlat,jdbcType=DOUBLE}, #{provinceid,jdbcType=INTEGER}, 
+      #{provincename,jdbcType=VARCHAR}, #{cityid,jdbcType=INTEGER}, #{cityname,jdbcType=VARCHAR}, 
+      #{districtid,jdbcType=INTEGER}, #{districtname,jdbcType=VARCHAR}, #{isactive,jdbcType=BIT}, 
+      #{createby,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, #{modifyby,jdbcType=VARCHAR}, 
+      #{modifytime,jdbcType=TIMESTAMP})
+  </insert>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select PkId, RegionName, Level, ParentId, CityCode, ADCode, CenterLng, CenterLat, 
+    ProvinceId, ProvinceName, CityId, CityName, DistrictId, DistrictName, IsActive, CreateBy, 
+    CreateTime, ModifyBy, ModifyTime
+    from t_region
+  </select>
+  <cache />
+</mapper>

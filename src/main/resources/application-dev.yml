@@ -1,0 +1,19 @@
+server:
+  port: 8080
+
+spring:
+  http:
+    encoding.charset: UTF-8
+    encoding.enable: true
+    encoding.force: true
+
+jdbc:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://rm-wz9253yt7qwahue48o.mysql.rds.aliyuncs.com:3306/ecommerce?characterEncoding=utf8&useSSL=true&serverTimezone=UTC
+    username: yeehom
+    password: Qq123456
+
+mybatis:
+    typeAliasesPackage: com.yeehom.ecommerseminiprog.pojo
+    mapperLocations: classpath:mybatis/mapper/*Mapper.xml
+    configLocation: classpath:mybatis/mybatis-config.xml

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yeehom.ecommerseminiprog.dao.PurchaseCarMapper">
+  <resultMap id="BaseResultMap" type="com.yeehom.ecommerseminiprog.pojo.PurchaseCar">
+    <result column="ID" jdbcType="INTEGER" property="id" />
+    <result column="SHOP_ID" jdbcType="INTEGER" property="shopId" />
+    <result column="USER_ID" jdbcType="INTEGER" property="userId" />
+    <result column="GOOD_ID" jdbcType="INTEGER" property="goodId" />
+    <result column="CREATE_TIME" jdbcType="DATE" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="DATE" property="updateTime" />
+  </resultMap>
+  <insert id="insert" parameterType="com.yeehom.ecommerseminiprog.pojo.PurchaseCar">
+    insert into t_purchase_car (ID, SHOP_ID, USER_ID, 
+      GOOD_ID, CREATE_TIME, UPDATE_TIME
+      )
+    values (#{id,jdbcType=INTEGER}, #{shopId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, 
+      #{goodId,jdbcType=INTEGER}, #{createTime,jdbcType=DATE}, #{updateTime,jdbcType=DATE}
+      )
+  </insert>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select ID, SHOP_ID, USER_ID, GOOD_ID, CREATE_TIME, UPDATE_TIME
+    from t_purchase_car
+  </select>
+  <cache />
+</mapper>
