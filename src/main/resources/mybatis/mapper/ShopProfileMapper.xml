@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yeehom.ecommerseminiprog.dao.ShopProfileMapper">
+  <resultMap id="BaseResultMap" type="com.yeehom.ecommerseminiprog.pojo.ShopProfile">
+    <result column="ID" jdbcType="INTEGER" property="id" />
+    <result column="SHOP_ID" jdbcType="INTEGER" property="shopId" />
+    <result column="SHOP_REGION" jdbcType="INTEGER" property="shopRegion" />
+    <result column="SHOP_DETAIL_ADDRESS" jdbcType="VARCHAR" property="shopDetailAddress" />
+    <result column="SHOP_TYPE" jdbcType="INTEGER" property="shopType" />
+    <result column="SHOP_LICENSE" jdbcType="VARCHAR" property="shopLicense" />
+    <result column="SHOP_SALES_VOLUME" jdbcType="INTEGER" property="shopSalesVolume" />
+    <result column="SHOP_DES" jdbcType="VARCHAR" property="shopDes" />
+    <result column="SHOP_FOLLOWS" jdbcType="INTEGER" property="shopFollows" />
+    <result column="CREATE_TIME" jdbcType="DATE" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="DATE" property="updateTime" />
+    <result column="SHOP_LICENSE_IMG" jdbcType="LONGVARBINARY" property="shopLicenseImg" />
+  </resultMap>
+  <insert id="insert" parameterType="com.yeehom.ecommerseminiprog.pojo.ShopProfile">
+    insert into t_shop_profile (ID, SHOP_ID, SHOP_REGION, 
+      SHOP_DETAIL_ADDRESS, SHOP_TYPE, SHOP_LICENSE, 
+      SHOP_SALES_VOLUME, SHOP_DES, SHOP_FOLLOWS, 
+      CREATE_TIME, UPDATE_TIME, SHOP_LICENSE_IMG
+      )
+    values (#{id,jdbcType=INTEGER}, #{shopId,jdbcType=INTEGER}, #{shopRegion,jdbcType=INTEGER}, 
+      #{shopDetailAddress,jdbcType=VARCHAR}, #{shopType,jdbcType=INTEGER}, #{shopLicense,jdbcType=VARCHAR}, 
+      #{shopSalesVolume,jdbcType=INTEGER}, #{shopDes,jdbcType=VARCHAR}, #{shopFollows,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=DATE}, #{updateTime,jdbcType=DATE}, #{shopLicenseImg,jdbcType=LONGVARBINARY}
+      )
+  </insert>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select ID, SHOP_ID, SHOP_REGION, SHOP_DETAIL_ADDRESS, SHOP_TYPE, SHOP_LICENSE, SHOP_SALES_VOLUME, 
+    SHOP_DES, SHOP_FOLLOWS, CREATE_TIME, UPDATE_TIME, SHOP_LICENSE_IMG
+    from t_shop_profile
+  </select>
+  <cache />
+</mapper>

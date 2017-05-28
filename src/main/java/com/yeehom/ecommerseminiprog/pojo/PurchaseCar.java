@@ -3,16 +3,18 @@ package com.yeehom.ecommerseminiprog.pojo;
 import java.io.Serializable;
 import java.util.Date;
 
-public class Favorites implements Serializable {
+public class PurchaseCar implements Serializable {
     private Integer id;
+
+    private Integer shopId;
 
     private Integer userId;
 
-    private Integer shopeId;
+    private Integer goodId;
 
     private Date createTime;
 
-    private Double updateTime;
+    private Date updateTime;
 
     private static final long serialVersionUID = 1L;
 
@@ -24,6 +26,14 @@ public class Favorites implements Serializable {
         this.id = id;
     }
 
+    public Integer getShopId() {
+        return shopId;
+    }
+
+    public void setShopId(Integer shopId) {
+        this.shopId = shopId;
+    }
+
     public Integer getUserId() {
         return userId;
     }
@@ -32,12 +42,12 @@ public class Favorites implements Serializable {
         this.userId = userId;
     }
 
-    public Integer getShopeId() {
-        return shopeId;
+    public Integer getGoodId() {
+        return goodId;
     }
 
-    public void setShopeId(Integer shopeId) {
-        this.shopeId = shopeId;
+    public void setGoodId(Integer goodId) {
+        this.goodId = goodId;
     }
 
     public Date getCreateTime() {
@@ -48,11 +58,11 @@ public class Favorites implements Serializable {
         this.createTime = createTime;
     }
 
-    public Double getUpdateTime() {
+    public Date getUpdateTime() {
         return updateTime;
     }
 
-    public void setUpdateTime(Double updateTime) {
+    public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
     }
 
@@ -63,8 +73,9 @@ public class Favorites implements Serializable {
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
+        sb.append(", shopId=").append(shopId);
         sb.append(", userId=").append(userId);
-        sb.append(", shopeId=").append(shopeId);
+        sb.append(", goodId=").append(goodId);
         sb.append(", createTime=").append(createTime);
         sb.append(", updateTime=").append(updateTime);
         sb.append(", serialVersionUID=").append(serialVersionUID);

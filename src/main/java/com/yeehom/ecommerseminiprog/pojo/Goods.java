@@ -1,94 +1,151 @@
 package com.yeehom.ecommerseminiprog.pojo;
 
-public class Goods {
-  private Long id;
-  private Long shop_id;
-  private String goods_name;
-  private Long goods_type;
-  private String goods_des;
-  private String goods_img;
-  private Double goods_orig_price;
-  private Double goods_pref_price;
-  private Long goods_avaible;
-  private Long goods_sales_volume;
+import java.io.Serializable;
+import java.util.Date;
 
-  public Long getId() {
-    return id;
-  }
+public class Goods implements Serializable {
+    private Integer id;
 
-  public void setId(Long id) {
-    this.id = id;
-  }
+    private Integer shopId;
 
-  public Long getShop_id() {
-    return shop_id;
-  }
+    private String goodsName;
 
-  public void setShop_id(Long shop_id) {
-    this.shop_id = shop_id;
-  }
+    private Integer goodsType;
 
-  public String getGoods_name() {
-    return goods_name;
-  }
+    private String goodsDes;
 
-  public void setGoods_name(String goods_name) {
-    this.goods_name = goods_name;
-  }
+    private Double goodsOrigPrice;
 
-  public Long getGoods_type() {
-    return goods_type;
-  }
+    private Double goodsPrefPrice;
 
-  public void setGoods_type(Long goods_type) {
-    this.goods_type = goods_type;
-  }
+    private Boolean goodsAvaible;
 
-  public String getGoods_des() {
-    return goods_des;
-  }
+    private Integer goodsSalesVolume;
 
-  public void setGoods_des(String goods_des) {
-    this.goods_des = goods_des;
-  }
+    private Date createTime;
 
-  public String getGoods_img() {
-    return goods_img;
-  }
+    private Date updateTime;
 
-  public void setGoods_img(String goods_img) {
-    this.goods_img = goods_img;
-  }
+    private byte[] goodsImg;
 
-  public Double getGoods_orig_price() {
-    return goods_orig_price;
-  }
+    private static final long serialVersionUID = 1L;
 
-  public void setGoods_orig_price(Double goods_orig_price) {
-    this.goods_orig_price = goods_orig_price;
-  }
+    public Integer getId() {
+        return id;
+    }
 
-  public Double getGoods_pref_price() {
-    return goods_pref_price;
-  }
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-  public void setGoods_pref_price(Double goods_pref_price) {
-    this.goods_pref_price = goods_pref_price;
-  }
+    public Integer getShopId() {
+        return shopId;
+    }
 
-  public Long getGoods_avaible() {
-    return goods_avaible;
-  }
+    public void setShopId(Integer shopId) {
+        this.shopId = shopId;
+    }
 
-  public void setGoods_avaible(Long goods_avaible) {
-    this.goods_avaible = goods_avaible;
-  }
+    public String getGoodsName() {
+        return goodsName;
+    }
 
-  public Long getGoods_sales_volume() {
-    return goods_sales_volume;
-  }
+    public void setGoodsName(String goodsName) {
+        this.goodsName = goodsName == null ? null : goodsName.trim();
+    }
 
-  public void setGoods_sales_volume(Long goods_sales_volume) {
-    this.goods_sales_volume = goods_sales_volume;
-  }
+    public Integer getGoodsType() {
+        return goodsType;
+    }
+
+    public void setGoodsType(Integer goodsType) {
+        this.goodsType = goodsType;
+    }
+
+    public String getGoodsDes() {
+        return goodsDes;
+    }
+
+    public void setGoodsDes(String goodsDes) {
+        this.goodsDes = goodsDes == null ? null : goodsDes.trim();
+    }
+
+    public Double getGoodsOrigPrice() {
+        return goodsOrigPrice;
+    }
+
+    public void setGoodsOrigPrice(Double goodsOrigPrice) {
+        this.goodsOrigPrice = goodsOrigPrice;
+    }
+
+    public Double getGoodsPrefPrice() {
+        return goodsPrefPrice;
+    }
+
+    public void setGoodsPrefPrice(Double goodsPrefPrice) {
+        this.goodsPrefPrice = goodsPrefPrice;
+    }
+
+    public Boolean getGoodsAvaible() {
+        return goodsAvaible;
+    }
+
+    public void setGoodsAvaible(Boolean goodsAvaible) {
+        this.goodsAvaible = goodsAvaible;
+    }
+
+    public Integer getGoodsSalesVolume() {
+        return goodsSalesVolume;
+    }
+
+    public void setGoodsSalesVolume(Integer goodsSalesVolume) {
+        this.goodsSalesVolume = goodsSalesVolume;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
+    }
+
+    public byte[] getGoodsImg() {
+        return goodsImg;
+    }
+
+    public void setGoodsImg(byte[] goodsImg) {
+        this.goodsImg = goodsImg;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(getClass().getSimpleName());
+        sb.append(" [");
+        sb.append("Hash = ").append(hashCode());
+        sb.append(", id=").append(id);
+        sb.append(", shopId=").append(shopId);
+        sb.append(", goodsName=").append(goodsName);
+        sb.append(", goodsType=").append(goodsType);
+        sb.append(", goodsDes=").append(goodsDes);
+        sb.append(", goodsOrigPrice=").append(goodsOrigPrice);
+        sb.append(", goodsPrefPrice=").append(goodsPrefPrice);
+        sb.append(", goodsAvaible=").append(goodsAvaible);
+        sb.append(", goodsSalesVolume=").append(goodsSalesVolume);
+        sb.append(", createTime=").append(createTime);
+        sb.append(", updateTime=").append(updateTime);
+        sb.append(", goodsImg=").append(goodsImg);
+        sb.append(", serialVersionUID=").append(serialVersionUID);
+        sb.append("]");
+        return sb.toString();
+    }
 }

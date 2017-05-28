@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yeehom.ecommerseminiprog.dao.FavoritesMapper">
+  <resultMap id="BaseResultMap" type="com.yeehom.ecommerseminiprog.pojo.Favorites">
+    <result column="ID" jdbcType="INTEGER" property="id" />
+    <result column="USER_ID" jdbcType="INTEGER" property="userId" />
+    <result column="SHOPE_ID" jdbcType="INTEGER" property="shopeId" />
+    <result column="CREATE_TIME" jdbcType="DATE" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="DOUBLE" property="updateTime" />
+  </resultMap>
+  <insert id="insert" parameterType="com.yeehom.ecommerseminiprog.pojo.Favorites">
+    insert into t_favorites (ID, USER_ID, SHOPE_ID, 
+      CREATE_TIME, UPDATE_TIME)
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{shopeId,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=DATE}, #{updateTime,jdbcType=DOUBLE})
+  </insert>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select ID, USER_ID, SHOPE_ID, CREATE_TIME, UPDATE_TIME
+    from t_favorites
+  </select>
+  <cache />
+</mapper>

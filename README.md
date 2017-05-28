@@ -1,2 +1,2 @@
-# e-commerse-miniprog
-E-commerse Mini Program
+# e-commerce-miniprog
+E-commerce Mini Program

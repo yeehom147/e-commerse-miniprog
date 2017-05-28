@@ -1,93 +1,101 @@
 package com.yeehom.ecommerseminiprog.pojo;
 
-import org.springframework.stereotype.Component;
+import java.io.Serializable;
+import java.util.Date;
 
-@Component
-public class User {
-  private Long id;
-  private String user_name;
-  private String user_pwd;
-  private String user_email;
-  private Long user_phone;
-  private java.sql.Date reg_time;
-  private String user_nick_name;
-  private Long user_gender;
+import javax.validation.constraints.NotNull;
 
-  public Long getId() {
-    return id;
-  }
+public class User implements Serializable {
+    private Integer id;
 
-  public void setId(Long id) {
-    this.id = id;
-  }
+    @NotNull
+    private String userName;
 
-  public String getUser_name() {
-    return user_name;
-  }
+    @NotNull
+    private String userPwd;
 
-  public void setUser_name(String user_name) {
-    this.user_name = user_name;
-  }
+    private String userEmail;
 
-  public String getUser_pwd() {
-    return user_pwd;
-  }
+    @NotNull
+    private Integer userPhone;
 
-  public void setUser_pwd(String user_pwd) {
-    this.user_pwd = user_pwd;
-  }
+    private Date createTime = new Date();
 
-  public String getUser_email() {
-    return user_email;
-  }
+    private Date updateTime = new Date();
 
-  public void setUser_email(String user_email) {
-    this.user_email = user_email;
-  }
+    private static final long serialVersionUID = 1L;
 
-  public Long getUser_phone() {
-    return user_phone;
-  }
+    public Integer getId() {
+        return id;
+    }
 
-  public void setUser_phone(Long user_phone) {
-    this.user_phone = user_phone;
-  }
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-  public java.sql.Date getReg_time() {
-    return reg_time;
-  }
+    public String getUserName() {
+        return userName;
+    }
 
-  public void setReg_time(java.sql.Date reg_time) {
-    this.reg_time = reg_time;
-  }
+    public void setUserName(String userName) {
+        this.userName = userName == null ? null : userName.trim();
+    }
 
-  public String getUser_nick_name() {
-    return user_nick_name;
-  }
+    public String getUserPwd() {
+        return userPwd;
+    }
 
-  public void setUser_nick_name(String user_nick_name) {
-    this.user_nick_name = user_nick_name;
-  }
+    public void setUserPwd(String userPwd) {
+        this.userPwd = userPwd == null ? null : userPwd.trim();
+    }
 
-  public Long getUser_gender() {
-    return user_gender;
-  }
+    public String getUserEmail() {
+        return userEmail;
+    }
 
-  public void setUser_gender(Long user_gender) {
-    this.user_gender = user_gender;
-  }
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail == null ? null : userEmail.trim();
+    }
 
-  @Override
-  public String toString() {
-    return "User{" +
-            "id=" + id +
-            ", user_name='" + user_name + '\'' +
-            ", user_pwd='" + user_pwd + '\'' +
-            ", user_email='" + user_email + '\'' +
-            ", user_phone=" + user_phone +
-            ", reg_time=" + reg_time +
-            ", user_nick_name='" + user_nick_name + '\'' +
-            ", user_gender=" + user_gender +
-            '}';
-  }
+    public Integer getUserPhone() {
+        return userPhone;
+    }
+
+    public void setUserPhone(Integer userPhone) {
+        this.userPhone = userPhone;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(getClass().getSimpleName());
+        sb.append(" [");
+        sb.append("Hash = ").append(hashCode());
+        sb.append(", id=").append(id);
+        sb.append(", userName=").append(userName);
+        sb.append(", userPwd=").append(userPwd);
+        sb.append(", userEmail=").append(userEmail);
+        sb.append(", userPhone=").append(userPhone);
+        sb.append(", createTime=").append(createTime);
+        sb.append(", updateTime=").append(updateTime);
+        sb.append(", serialVersionUID=").append(serialVersionUID);
+        sb.append("]");
+        return sb.toString();
+    }
 }

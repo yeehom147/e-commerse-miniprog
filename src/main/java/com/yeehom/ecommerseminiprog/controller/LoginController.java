@@ -3,16 +3,19 @@
  */
 package com.yeehom.ecommerseminiprog.controller;
 
-import com.yeehom.ecommerseminiprog.util.JsonUtil;
+import javax.validation.Valid;
+import javax.websocket.server.PathParam;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.yeehom.ecommerseminiprog.entity.Result;
+import com.yeehom.ecommerseminiprog.enums.ResultEnum;
 import com.yeehom.ecommerseminiprog.pojo.User;
-import com.yeehom.ecommerseminiprog.service.ILoginService;
-
-import static org.springframework.web.bind.annotation.RequestMethod.POST;
+import com.yeehom.ecommerseminiprog.util.ResultUtil;
 
 /**
  * @author YeeHomFoo
@@ -21,14 +24,32 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 @RestController()
 public class LoginController {
 	
-	@Autowired
-	ILoginService loginService;
-
-	@RequestMapping(value = "/user",method=POST)
-	public String queryUserByName(@RequestParam(value = "userName") String userName)
-	{
-		User user = loginService.queryUserByName(userName);
-
-		return JsonUtil.Serialize(user);
-	}
+//	@Autowired
+//	ILoginService loginService;
+//	
+//	@GetMapping(value="/user/{id}")
+//	public User queryUserById(@PathParam("id") Integer id) {
+//		return loginService.queryUserByName(id.toString());
+//	}
+//
+//	@GetMapping(value = "/user/{userName}")
+//	public User queryUserByName(@PathParam("userName") String userName)
+//	{
+//		return loginService.queryUserByName(userName);
+//	}
+//	
+//	@PostMapping(value = "/user")
+//	public Result<User> addUser(@Valid User user, BindingResult bindingResult)
+//	{
+//		if (bindingResult.hasErrors()) {
+//			String errorMsg = bindingResult.getFieldError().getDefaultMessage();
+//			System.out.println(errorMsg);
+//			return ResultUtil.failure(ResultEnum.INVALID_PARAM.setMessage(errorMsg));
+//		}
+//		
+//		user.setId(user.getId());
+//		user.setUserName(user.getUserName());
+//		
+//		return ResultUtil.success(user);
+//	}
 }

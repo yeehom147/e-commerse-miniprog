@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yeehom.ecommerseminiprog.dao.ShopMapper">
+  <resultMap id="BaseResultMap" type="com.yeehom.ecommerseminiprog.pojo.Shop">
+    <result column="ID" jdbcType="INTEGER" property="id" />
+    <result column="USER_ID" jdbcType="INTEGER" property="userId" />
+    <result column="SHOP_NAME" jdbcType="VARCHAR" property="shopName" />
+    <result column="SHOP_OWNER" jdbcType="VARCHAR" property="shopOwner" />
+    <result column="SHOP_OWNER_ID" jdbcType="INTEGER" property="shopOwnerId" />
+    <result column="SHOP_OWNER_PHONE" jdbcType="INTEGER" property="shopOwnerPhone" />
+    <result column="SHOP_CONTACT" jdbcType="INTEGER" property="shopContact" />
+    <result column="IS_VERIFIED" jdbcType="BIT" property="isVerified" />
+    <result column="CREATE_TIME" jdbcType="DATE" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="DATE" property="updateTime" />
+  </resultMap>
+  <insert id="insert" parameterType="com.yeehom.ecommerseminiprog.pojo.Shop">
+    insert into t_shop (ID, USER_ID, SHOP_NAME, 
+      SHOP_OWNER, SHOP_OWNER_ID, SHOP_OWNER_PHONE, 
+      SHOP_CONTACT, IS_VERIFIED, CREATE_TIME, 
+      UPDATE_TIME)
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{shopName,jdbcType=VARCHAR}, 
+      #{shopOwner,jdbcType=VARCHAR}, #{shopOwnerId,jdbcType=INTEGER}, #{shopOwnerPhone,jdbcType=INTEGER}, 
+      #{shopContact,jdbcType=INTEGER}, #{isVerified,jdbcType=BIT}, #{createTime,jdbcType=DATE}, 
+      #{updateTime,jdbcType=DATE})
+  </insert>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select ID, USER_ID, SHOP_NAME, SHOP_OWNER, SHOP_OWNER_ID, SHOP_OWNER_PHONE, SHOP_CONTACT, 
+    IS_VERIFIED, CREATE_TIME, UPDATE_TIME
+    from t_shop
+  </select>
+  <cache />
+</mapper>

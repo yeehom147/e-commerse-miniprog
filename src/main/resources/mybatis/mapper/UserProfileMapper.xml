@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yeehom.ecommerseminiprog.dao.UserProfileMapper">
+  <resultMap id="BaseResultMap" type="com.yeehom.ecommerseminiprog.pojo.UserProfile">
+    <result column="ID" jdbcType="INTEGER" property="id" />
+    <result column="USER_ID" jdbcType="INTEGER" property="userId" />
+    <result column="USER_NICK_NAME" jdbcType="VARCHAR" property="userNickName" />
+    <result column="USER_GENDER" jdbcType="INTEGER" property="userGender" />
+    <result column="USER_TYPE" jdbcType="INTEGER" property="userType" />
+    <result column="USER_REGION" jdbcType="INTEGER" property="userRegion" />
+    <result column="USER_ADDRESS" jdbcType="VARCHAR" property="userAddress" />
+    <result column="CREATE_TIME" jdbcType="DATE" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="DATE" property="updateTime" />
+    <result column="USER_AVARTAR" jdbcType="LONGVARBINARY" property="userAvartar" />
+  </resultMap>
+  <insert id="insert" parameterType="com.yeehom.ecommerseminiprog.pojo.UserProfile">
+    insert into t_user_profile (ID, USER_ID, USER_NICK_NAME, 
+      USER_GENDER, USER_TYPE, USER_REGION, 
+      USER_ADDRESS, CREATE_TIME, UPDATE_TIME, 
+      USER_AVARTAR)
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{userNickName,jdbcType=VARCHAR}, 
+      #{userGender,jdbcType=INTEGER}, #{userType,jdbcType=INTEGER}, #{userRegion,jdbcType=INTEGER}, 
+      #{userAddress,jdbcType=VARCHAR}, #{createTime,jdbcType=DATE}, #{updateTime,jdbcType=DATE}, 
+      #{userAvartar,jdbcType=LONGVARBINARY})
+  </insert>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select ID, USER_ID, USER_NICK_NAME, USER_GENDER, USER_TYPE, USER_REGION, USER_ADDRESS, 
+    CREATE_TIME, UPDATE_TIME, USER_AVARTAR
+    from t_user_profile
+  </select>
+  <cache />
+</mapper>

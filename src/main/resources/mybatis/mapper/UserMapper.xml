@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yeehom.ecommerseminiprog.dao.UserMapper">
+  <resultMap id="BaseResultMap" type="com.yeehom.ecommerseminiprog.pojo.User">
+    <result column="ID" jdbcType="INTEGER" property="id" />
+    <result column="USER_NAME" jdbcType="VARCHAR" property="userName" />
+    <result column="USER_PWD" jdbcType="VARCHAR" property="userPwd" />
+    <result column="USER_EMAIL" jdbcType="VARCHAR" property="userEmail" />
+    <result column="USER_PHONE" jdbcType="INTEGER" property="userPhone" />
+    <result column="CREATE_TIME" jdbcType="DATE" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="DATE" property="updateTime" />
+  </resultMap>
+  
+  <sql id="columns">
+  	ID, USER_NAME, USER_PWD, USER_EMAIL, USER_PHONE, CREATE_TIME, UPDATE_TIME
+  </sql>
+  
+  <insert id="insertOne" parameterType="com.yeehom.ecommerseminiprog.pojo.User"  useGeneratedKeys="true" keyProperty="id">
+    insert into t_user (ID, USER_NAME, USER_PWD, 
+      USER_EMAIL, USER_PHONE, CREATE_TIME, 
+      UPDATE_TIME)
+    values (#{id,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{userPwd,jdbcType=VARCHAR}, 
+      #{userEmail,jdbcType=VARCHAR}, #{userPhone,jdbcType=INTEGER}, #{createTime,jdbcType=DATE}, 
+      #{updateTime,jdbcType=DATE})
+  </insert>
+<!--   
+  <insert id="insetBatch" parameterType="java.util.list">
+  	insert into t_user (ID, USER_NAME, USER_PWD, 
+      USER_EMAIL, USER_PHONE, CREATE_TIME, 
+      UPDATE_TIME) values 
+      <foreach collection="list" item="item" separator=",">
+	      (#{item.id,jdbcType=INTEGER}, #{item.iduserName,jdbcType=VARCHAR}, 
+	      #{item.iduserPwd,jdbcType=VARCHAR}, #{item.iduserEmail,jdbcType=VARCHAR},
+		  #{item.iduserPhone,jdbcType=INTEGER}, #{item.idcreateTime,jdbcType=DATE}, 
+	      #{item.idupdateTime,jdbcType=DATE})
+      </foreach>
+  </insert> -->
+  
+  <update id="updateSelectedByPrimaryKey" parameterType="com.yeehom.ecommerseminiprog.pojo.User" >
+    update t_user
+    <set >
+      <if test="userName != null" >
+        USER_NAME = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        USER_PWD = #{userPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="userEmail != null" >
+        USER_EMAIL = #{userEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="userPhone != null" >
+        USER_PHONE = #{userPhone,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=DATE},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=DATE},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <update id="updateByPrimaryKey" parameterType="com.yeehom.ecommerseminiprog.pojo.User" >
+    update t_user
+    set USER_NAME = #{userName,jdbcType=VARCHAR},
+      USER_PWD = #{userPwd,jdbcType=VARCHAR},
+      USER_EMAIL = #{userEmail,jdbcType=VARCHAR},
+      USER_PHONE = #{userPhone,jdbcType=INTEGER},
+      CREATE_TIME = #{createTime,jdbcType=DATE},
+      UPDATE_TIME = #{updateTime,jdbcType=DATE}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  
+  <select id="queryUserList" resultMap="BaseResultMap">
+    select <include refid="columns" />
+    from t_user
+  </select>
+  <!-- 若不需要自动返回主键，将useGeneratedKeys="true" keyProperty="id"去掉即可(当然如果不需要自动返回主键，直接用注解即可) -->
+  
+  <!-- 已ByPage结尾的方式命名，系统自动附加分页功能 -->
+  <select id="queryUserListByPage" parameterType="com.yeehom.ecommerseminiprog.pojo.User" resultMap="BaseResultMap">
+    select <include refid="columns" /> from t_user
+    <where>
+    	<if test="userName != null and !&quot;&quot;.equals(userName.trim())">
+    		and USER_NAME=#{userName}
+    	</if>
+    	<if test="userPwd != null and !&quot;&quot;.equals(userPwd.trim())">
+    		and USER_PWD=#{userPwd}
+    	</if>
+    </where>
+  </select>
+  
+  <cache />
+</mapper>

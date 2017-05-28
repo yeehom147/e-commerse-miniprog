@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yeehom.ecommerseminiprog.dao.GoodsMapper">
+  <resultMap id="BaseResultMap" type="com.yeehom.ecommerseminiprog.pojo.Goods">
+    <result column="ID" jdbcType="INTEGER" property="id" />
+    <result column="SHOP_ID" jdbcType="INTEGER" property="shopId" />
+    <result column="GOODS_NAME" jdbcType="VARCHAR" property="goodsName" />
+    <result column="GOODS_TYPE" jdbcType="INTEGER" property="goodsType" />
+    <result column="GOODS_DES" jdbcType="VARCHAR" property="goodsDes" />
+    <result column="GOODS_ORIG_PRICE" jdbcType="DOUBLE" property="goodsOrigPrice" />
+    <result column="GOODS_PREF_PRICE" jdbcType="DOUBLE" property="goodsPrefPrice" />
+    <result column="GOODS_AVAIBLE" jdbcType="BIT" property="goodsAvaible" />
+    <result column="GOODS_SALES_VOLUME" jdbcType="INTEGER" property="goodsSalesVolume" />
+    <result column="CREATE_TIME" jdbcType="DATE" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="DATE" property="updateTime" />
+    <result column="GOODS_IMG" jdbcType="LONGVARBINARY" property="goodsImg" />
+  </resultMap>
+  <insert id="insert" parameterType="com.yeehom.ecommerseminiprog.pojo.Goods">
+    insert into t_goods (ID, SHOP_ID, GOODS_NAME, 
+      GOODS_TYPE, GOODS_DES, GOODS_ORIG_PRICE, 
+      GOODS_PREF_PRICE, GOODS_AVAIBLE, GOODS_SALES_VOLUME, 
+      CREATE_TIME, UPDATE_TIME, GOODS_IMG
+      )
+    values (#{id,jdbcType=INTEGER}, #{shopId,jdbcType=INTEGER}, #{goodsName,jdbcType=VARCHAR}, 
+      #{goodsType,jdbcType=INTEGER}, #{goodsDes,jdbcType=VARCHAR}, #{goodsOrigPrice,jdbcType=DOUBLE}, 
+      #{goodsPrefPrice,jdbcType=DOUBLE}, #{goodsAvaible,jdbcType=BIT}, #{goodsSalesVolume,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=DATE}, #{updateTime,jdbcType=DATE}, #{goodsImg,jdbcType=LONGVARBINARY}
+      )
+  </insert>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select ID, SHOP_ID, GOODS_NAME, GOODS_TYPE, GOODS_DES, GOODS_ORIG_PRICE, GOODS_PREF_PRICE, 
+    GOODS_AVAIBLE, GOODS_SALES_VOLUME, CREATE_TIME, UPDATE_TIME, GOODS_IMG
+    from t_goods
+  </select>
+  <cache />
+</mapper>
