@@ -6,7 +6,7 @@
     <result column="USER_NAME" jdbcType="VARCHAR" property="userName" />
     <result column="USER_PWD" jdbcType="VARCHAR" property="userPwd" />
     <result column="USER_EMAIL" jdbcType="VARCHAR" property="userEmail" />
-    <result column="USER_PHONE" jdbcType="INTEGER" property="userPhone" />
+    <result column="USER_PHONE" jdbcType="VARCHAR" property="userPhone"  />
     <result column="CREATE_TIME" jdbcType="DATE" property="createTime" />
     <result column="UPDATE_TIME" jdbcType="DATE" property="updateTime" />
   </resultMap>
@@ -20,7 +20,7 @@
       USER_EMAIL, USER_PHONE, CREATE_TIME, 
       UPDATE_TIME)
     values (#{id,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{userPwd,jdbcType=VARCHAR}, 
-      #{userEmail,jdbcType=VARCHAR}, #{userPhone,jdbcType=INTEGER}, #{createTime,jdbcType=DATE}, 
+      #{userEmail,jdbcType=VARCHAR}, #{userPhone,jdbcType=VARCHAR}, #{createTime,jdbcType=DATE},
       #{updateTime,jdbcType=DATE})
   </insert>
 <!--   
@@ -49,7 +49,7 @@
         USER_EMAIL = #{userEmail,jdbcType=VARCHAR},
       </if>
       <if test="userPhone != null" >
-        USER_PHONE = #{userPhone,jdbcType=INTEGER},
+        USER_PHONE = #{userPhone,jdbcType=VARCHAR},
       </if>
       <if test="createTime != null" >
         CREATE_TIME = #{createTime,jdbcType=DATE},
@@ -66,7 +66,7 @@
     set USER_NAME = #{userName,jdbcType=VARCHAR},
       USER_PWD = #{userPwd,jdbcType=VARCHAR},
       USER_EMAIL = #{userEmail,jdbcType=VARCHAR},
-      USER_PHONE = #{userPhone,jdbcType=INTEGER},
+      USER_PHONE = #{userPhone,jdbcType=VARCHAR},
       CREATE_TIME = #{createTime,jdbcType=DATE},
       UPDATE_TIME = #{updateTime,jdbcType=DATE}
     where id = #{id,jdbcType=VARCHAR}
@@ -88,7 +88,29 @@
     	<if test="userPwd != null and !&quot;&quot;.equals(userPwd.trim())">
     		and USER_PWD=#{userPwd}
     	</if>
+        <if test="userPhone != null and !&quot;&quot;.equals(userPhone.trim())">
+          and USER_PHONE=#{userPhone}
+        </if>
+        <if test="userEmail != null and !&quot;&quot;.equals(userEmail.trim())">
+          and USER_EMAIL=#{userEmail}
+        </if>
     </where>
+  </select>
+
+  <select id="Login" resultType="java.lang.Integer" parameterType="com.yeehom.ecommerseminiprog.pojo.User">
+    select count(1) from t_user where 1=1 and USER_PWD = #{userPwd}
+      <if test="userPhone != null and !&quot;&quot;.equals(userPhone.trim())">
+        and USER_PHONE = #{userPhone}
+      </if>
+      <if test="userEmail != null and !&quot;&quot;.equals(userEmail.trim())">
+        and USER_EMAIL = #{userEmail}
+      </if>
+      <if test="userPhone == null and userEmail == null">
+        <if test="&quot;&quot;.equals(userName.trim()) and &quot;&quot;.equals(userEmail.trim())">
+          and 1=0
+        </if>
+      </if>
+
   </select>
   
   <cache />

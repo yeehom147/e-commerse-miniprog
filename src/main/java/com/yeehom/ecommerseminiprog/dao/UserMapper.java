@@ -15,5 +15,7 @@ public interface UserMapper {
 
     public List<User> queryUserList();
 
-    public List<User> queryUserListByPage();
+    public List<User> queryUserListByPage(User user);
+
+    public int Login(User user);
 }

@@ -3,8 +3,7 @@
  */
 package com.yeehom.ecommerseminiprog.service;
 
-import java.util.List;
-
+import com.yeehom.ecommerseminiprog.entity.Result;
 import com.yeehom.ecommerseminiprog.pojo.User;
 
 /**
@@ -12,16 +11,13 @@ import com.yeehom.ecommerseminiprog.pojo.User;
  *
  */
 public interface IUserService {
-	
-    public int insertOne(User user);
-    
-    public int insertBatch(List<User> users);
-    
-    public int updateSelectedByPrimaryKey(User user);
-    
-    public int updateByPrimaryKey(User user);
+    /**
+     * 用戶登陸，
+     * 方式：1.手機 2.郵箱
+     * @param user
+     * @return       成功/失敗
+     */
+    Result<Boolean> Login(User user);
 
-    public List<User> queryUserList();
 
-    public List<User> queryUserListByPage();
 }

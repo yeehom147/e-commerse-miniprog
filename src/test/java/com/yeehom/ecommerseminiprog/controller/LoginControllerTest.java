@@ -27,7 +27,7 @@ public class LoginControllerTest {
 	private MockMvc mvc;
 
 	@BeforeClass
-	public void beforeClass() {
+	public static void beforeClass() {
 		System.out.println("class starts");
 	}
 
@@ -49,12 +49,12 @@ public class LoginControllerTest {
 	}
 
 	@After
-	public void after() {
+	public  void after() {
 		System.out.println("function ended");
 	}
 	
 	@AfterClass
-	public void afterClass() {
+	public static void afterClass() {
 		System.out.println("class ended");
 	}
 }

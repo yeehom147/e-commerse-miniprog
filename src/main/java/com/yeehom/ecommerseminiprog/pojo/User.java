@@ -1,9 +1,8 @@
 package com.yeehom.ecommerseminiprog.pojo;
 
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
-
-import javax.validation.constraints.NotNull;
 
 public class User implements Serializable {
     private Integer id;
@@ -17,7 +16,7 @@ public class User implements Serializable {
     private String userEmail;
 
     @NotNull
-    private Integer userPhone;
+    private String userPhone;
 
     private Date createTime = new Date();
 
@@ -57,11 +56,11 @@ public class User implements Serializable {
         this.userEmail = userEmail == null ? null : userEmail.trim();
     }
 
-    public Integer getUserPhone() {
+    public String getUserPhone() {
         return userPhone;
     }
 
-    public void setUserPhone(Integer userPhone) {
+    public void setUserPhone(String userPhone) {
         this.userPhone = userPhone;
     }
 

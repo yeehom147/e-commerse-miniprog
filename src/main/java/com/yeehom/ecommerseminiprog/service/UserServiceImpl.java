@@ -3,16 +3,15 @@
  */
 package com.yeehom.ecommerseminiprog.service;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
+import com.yeehom.ecommerseminiprog.dao.UserMapper;
+import com.yeehom.ecommerseminiprog.entity.RegularEntity;
+import com.yeehom.ecommerseminiprog.entity.Result;
+import com.yeehom.ecommerseminiprog.enums.ResultEnum;
+import com.yeehom.ecommerseminiprog.pojo.User;
+import com.yeehom.ecommerseminiprog.util.Regular;
+import com.yeehom.ecommerseminiprog.util.ResultUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.yeehom.ecommerseminiprog.dao.UserMapper;
-import com.yeehom.ecommerseminiprog.entity.Page;
-import com.yeehom.ecommerseminiprog.pojo.User;
 
 /**
  * @author Yeehom Foo
@@ -21,45 +20,36 @@ import com.yeehom.ecommerseminiprog.pojo.User;
 @Service
 public class UserServiceImpl implements IUserService {
 
-	@Autowired
-	private UserMapper userDao;
+    @Autowired
+    UserMapper userDao;
 
 	@Override
-	public int insertOne(User user) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+	public Result<Boolean> Login(User user) {
 
-	@Override
-	public int insertBatch(List<User> users) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int updateSelectedByPrimaryKey(User user) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int updateByPrimaryKey(User user) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public List<User> queryUserList() {
-		return userDao.queryUserList();
-	}
-
-	@Override
-	public List<User> queryUserListByPage() {
-//		User user = new User();
-//		Map<String, Object> parameter = new HashMap<String, Object>();
-//		parameter.put("User", user);
-//		parameter.put("page", Page);
-		return null;
+        //账号解析
+        if(user==null)
+            return ResultUtil.failure(ResultEnum.INVALID_PARAM);
+        RegularEntity entity = Regular.Analyze(user.getUserName());
+        if(entity.isMatch())
+        {
+            switch (entity.getMatchType())
+            {
+                case PHONE:
+                    user.setUserPhone(user.getUserName());
+                    break;
+                case EMAIL:
+                    user.setUserEmail(user.getUserName());
+                    break;
+                default:
+                    break;
+            }
+            user.setUserPwd(user.getUserPwd());
+            return userDao.Login(user)>0? ResultUtil.success(true):ResultUtil.failure(ResultEnum.FAILURE);
+        }
+        else
+        {
+           return ResultUtil.failure(ResultEnum.INVALID_PARAM);
+        }
 	}
 
 }
